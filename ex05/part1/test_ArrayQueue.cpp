@@ -1,7 +1,6 @@
 // test_ArrayQueue.cpp
 #include "ArrayQueue.h"
 #include <iostream>
-#include <cassert>
 
 // Helper function to print test result
 void run_test(const std::string& test_name, bool result) {

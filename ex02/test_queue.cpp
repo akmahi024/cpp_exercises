@@ -1,43 +1,59 @@
 #include "queue.h"
+#include <iostream>
+#include <stdexcept> // For std::runtime_error
 
 int main() {
-    Queue q;
+    // Create a queue with max size 3 to  test overflow
+    Queue q(3);
+    int x, y, z;
 
-    // Test enqueue
-    q.enqueue(Point(1, 2, 3));
-    q.enqueue(Point(4, 5, 6));
-    q.enqueue(Point(7, 8, 9));
+    // User input for points
+    for (int i = 0; i < 3; ++i) {
+        std::cout << "Enter coordinates for Point " << (i + 1) << " (x y z): ";
+        std::cin >> x >> y >> z;
 
-    // Test size
-    std::cout << "Queue size after enqueues: " << q.size() << std::endl; // Should print 3
+        try {
+            q.enqueue(Point(x, y, z));
+            std::cout << "Enqueued: (" << x << ", " << y << ", " << z << ")\n";
 
-    // Test peek
-    Point p = q.peek();
-    std::cout << "Peek: (" << p.x << ", " << p.y << ", " << p.z << ")" << std::endl; // Should print (1, 2, 3)
+            // Verify if the queue is full after each enqueue
+            if (q.full()) {
+                std::cout << "Queue is full now!\n";
+                break; // Exit if the queue is full
+            }
+        } catch (const std::runtime_error& e) {
+            std::cout << "Caught exception: " << e.what() << std::endl;
+            break; // Exit if an error occurs
+        }
+    }
 
-    // Test dequeue
-    q.dequeue();
-    std::cout << "Queue size after one dequeue: " << q.size() << std::endl; // Should print 2
+    // Check the queue size after user input
+    std::cout << "Queue size after attempted enqueues: " << q.size() << std::endl; // Should print 3 or less
 
-    p = q.peek();
-    std::cout << "Peek after one dequeue: (" << p.x << ", " << p.y << ", " << p.z << ")" << std::endl; // Should print (4, 5, 6)
+    // Peek at the first element
+    if (!q.empty()) {
+        Point p = q.peek();
+        std::cout << "Peek: (" << p.x << ", " << p.y << ", " << p.z << ")\n"; // Should print the first element
+    }
 
-    // Fill the queue to test overflow
-    q.enqueue(Point(10, 11, 12));
-    q.enqueue(Point(13, 14, 15));
-
-    // Should print queue size 4
-    std::cout << "Queue size after more enqueues: " << q.size() << std::endl; // Should print 4
-
-    // Test dequeuing all elements
+    // Dequeue all elements
+    std::cout << "Dequeuing all elements...\n";
     while (!q.empty()) {
         Point current = q.peek();
-        std::cout << "Dequeuing: (" << current.x << ", " << current.y << ", " << current.z << ")" << std::endl;
+        std::cout << "Dequeuing: (" << current.x << ", " << current.y << ", " << current.z << ")\n";
         q.dequeue();
     }
 
-    // Final size should be 0
+    // Check the final size
     std::cout << "Final queue size: " << q.size() << std::endl; // Should print 0
+
+    // Attempt to peek on an empty queue (should throw an exception)
+    try {
+        std::cout << "Attempting to peek on an empty queue...\n";
+        q.peek();  // This should throw an exception
+    } catch (const std::runtime_error& e) {
+        std::cout << "Caught exception: " << e.what() << std::endl;
+    }
 
     return 0;
 }

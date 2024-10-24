@@ -39,7 +39,7 @@ public:
 
 private:
     int _num_items; // number of elements in the queue
-    int _max_size; // capacity of the fixed-size queue
+    const int _max_size; // capacity of the fixed-size queue
     int _first; // index to the first element of the queue
     int _last; // index of the next available slot 
     Point* _items; // data container 

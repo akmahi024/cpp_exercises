@@ -58,7 +58,7 @@ public:
     }
 
     // Copy constructor
-    ArrayQueue(const ArrayQueue& other)
+    ArrayQueue(const ArrayQueue& other) noexcept
         : _num_items(other._num_items), 
           _allocated_size(other._allocated_size), 
           _first(0), _last(other._num_items) {
@@ -83,7 +83,7 @@ public:
     }
 
     // Assignment operator
-    ArrayQueue& operator=(const ArrayQueue& other) {
+    ArrayQueue& operator=(const ArrayQueue& other) noexcept {
         if (this != &other) {
             std::string* new_items = new std::string[other._allocated_size];
             for (int i = 0; i < other._num_items; ++i) {
@@ -124,7 +124,7 @@ public:
         delete[] _items;
     }
 
-    void enqueue(const std::string& item) {
+    void enqueue(const std::string& item) noexcept{
         if (_num_items == _allocated_size) resize(2 * _allocated_size);
         _items[_last++] = item;
         if (_last == _allocated_size) _last = 0;

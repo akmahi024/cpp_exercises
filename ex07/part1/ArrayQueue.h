@@ -25,7 +25,7 @@ private:
     int _last;            // Index of the next available slot
     std::string* _items;  // Container for queue elements
 
-    void resize(int max_size) {
+    void resize(int max_size) noexcept {
         if (max_size == 0) max_size = 1;
         std::string* temp = new std::string[max_size];
         for (int i = 0; i < _num_items; ++i) {

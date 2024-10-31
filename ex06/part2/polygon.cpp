@@ -1,34 +1,35 @@
+// polygon.cpp
+
 #include "polygon.h"
 
-// Constructor that takes a vector of Points
-Polygon::Polygon(const std::vector<Point>& vertices) : vertices(vertices) {}
+Polygon::Polygon(int num_vertices, const std::vector<Point>& vertices)
+    : num_vertices_(num_vertices), vertices_(vertices) {
+    if (num_vertices_ < 3) {
+        throw std::invalid_argument("A polygon must have at least 3 vertices.");
+    }
+    if (num_vertices_ != vertices_.size()) {
+        throw std::invalid_argument("Number of vertices does not match the size of the vertices list.");
+    }
+}
 
-// Copy constructor
-Polygon::Polygon(const Polygon& other) : vertices(other.vertices) {}
-
-// Overriding Shape interface methods
 std::string Polygon::get_name() const {
     return "Polygon";
 }
 
-// Compute the signed area of the polygon
 float Polygon::compute_area() const {
     float area = 0.0f;
-    int N = vertices.size();
-
-    for (int i = 0; i < N; i++) {
-        area += (vertices[i].x * vertices[(i + 1) % N].y) - (vertices[i].y * vertices[(i + 1) % N].x);
+    for (int i = 0; i < num_vertices_; ++i) {
+        const Point& p1 = vertices_[i];
+        const Point& p2 = vertices_[(i + 1) % num_vertices_]; // Wrap around for closing the polygon
+        area += (p1.x * p2.y) - (p1.y * p2.x);
     }
-
-    return 0.5f * area;  // Return the absolute value of area
+    return std::abs(area) / 2.0f; // Area is always positive
 }
 
-// Create a new Polygon object
 Polygon* Polygon::create() const {
-    return new Polygon(std::vector<Point>());  // Default to an empty polygon
+    return new Polygon(0, {}); // Creates a new empty Polygon
 }
 
-// Clone the current Polygon object
 Polygon* Polygon::clone() const {
-    return new Polygon(*this);
+    return new Polygon(*this); // Uses the copy constructor to create a new Polygon
 }

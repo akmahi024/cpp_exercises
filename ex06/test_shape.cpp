@@ -51,17 +51,11 @@ int main() {
     print_shape_info(cloned_polygon);
     
     //test for polygon with vertices<3(terminates)
-    
     std::vector<Point> vertices1 = {{0, 0}, {4, 0}};
     int num_vertices1 = vertices1.size();
     Shape* polygon1 = new Polygon(num_vertices1, vertices1);
     std::cout << "\nOriginal Polygon:" << std::endl;
     print_shape_info(polygon1);
-
-    // Clean up Polygon objects
-    delete polygon;
-    delete created_polygon;
-    delete cloned_polygon;
 
     return 0;
 }

@@ -51,10 +51,10 @@ int main() {
     }
     //peek from an empty queue
     try {
-    std::cout << "[TEST] Peek on an empty queue\n";
-    q1.peek();  // q1 is empty, this will throw an exception
+         std::cout << "[TEST] Peek on an empty queue\n";
+         q1.peek();  // q1 is empty, this will throw an exception
     } catch (const QueueUnderflowException& e) {
-    std::cerr << "Caught exception: " << e.what() << std::endl;
+         std::cerr << "Caught exception: " << e.what() << std::endl;
     }
    
 

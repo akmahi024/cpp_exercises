@@ -11,6 +11,8 @@ ILLUSTRATION:
 --------------
 Using Exceptions:
 ---------------
+```cpp
+
 #include <iostream>
 #include <exception>
 

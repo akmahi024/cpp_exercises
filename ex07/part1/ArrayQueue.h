@@ -124,22 +124,28 @@ public:
         delete[] _items;
     }
 
-    void enqueue(const std::string& item) noexcept{
-        if (_num_items == _allocated_size) resize(2 * _allocated_size);
-        _items[_last++] = item;
-        if (_last == _allocated_size) _last = 0;
-        _num_items++;
+    void enqueue(const std::string& item) noexcept {
+       if (_num_items == _allocated_size) resize(2 * _allocated_size);
+       _items[_last++] = item;
+       if (_last == _allocated_size) _last = 0;
+       _num_items++;
+       std::cout << "Item enqueued: " << item << std::endl; // Print item when enqueued
     }
 
     void dequeue() {
-        if (empty()) {
-            throw QueueUnderflowException();
-        }
-        _num_items--;
-        _first++;
-        if (_first == _allocated_size) _first = 0;
-        if (_num_items > 0 && _num_items == _allocated_size / 4) resize(_allocated_size / 2);
+       if (empty()) {
+         throw QueueUnderflowException();
+       }
+       std::string item = _items[_first]; // Store item to print before removing
+       _num_items--;
+       _first++;
+       if (_first == _allocated_size) _first = 0;
+       if (_num_items > 0 && _num_items == _allocated_size / 4) resize(_allocated_size / 2);
+       std::cout << "Item dequeued: " << item << std::endl; // Print item when dequeued
     }
+    
+
+
 
     std::string peek() {
         if (empty()) {

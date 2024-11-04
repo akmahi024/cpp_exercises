@@ -17,6 +17,8 @@ void print_test_int(const std::string& test_name, int expected, int actual) {
 }
 
 int main() {
+    std::cout << "test with negative size for Array:" << std::endl;
+    
     try {
         ArrayQueue queue(-5);  // This will throw an exception
     } catch (const std::invalid_argument& e) {
@@ -30,7 +32,7 @@ int main() {
 
     // Move constructor
     ArrayQueue q2 = std::move(q1);
-    print_test_int("Queue size after move construction (q2)", 2, q2.size());
+    print_test_int("Queue size after move construction (q2) from (q1)", 2, q2.size());
     print_test("Peek front item of q2", "apple", q2.peek());
     print_test_int("Queue size of moved-from queue (q1)", 0, q1.size());
 
@@ -38,7 +40,7 @@ int main() {
     ArrayQueue q3;
     q3.enqueue("date");
     q3 = std::move(q2);
-    print_test_int("Queue size after move assignment (q3)", 2, q3.size());
+    print_test_int("Queue size after move assignment (q3) from (q2)", 2, q3.size());
     print_test("Peek front item of q3", "apple", q3.peek());
     print_test_int("Queue size of moved-from queue (q2)", 0, q2.size());
 

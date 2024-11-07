@@ -17,7 +17,7 @@ void print_test_int(const std::string& test_name, int expected, int actual) {
 }
 
 int main() {
-    std::cout << "test with negative size for Array:" << std::endl;
+    std::cout << "test with negative size for Array:expected:size cant be negative" << std::endl;
     
     try {
         ArrayQueue queue(-5);  // This will throw an exception
@@ -46,14 +46,14 @@ int main() {
 
     // Test: Dequeue from an empty queue
     try {
-        std::cout << "[TEST] Dequeue from an empty queue\n";
+        std::cout << "[TEST] Dequeue from an empty queue,expected:cant dequeue an empty queue\n";
         q1.dequeue();  // q1 is empty, this should throw an exception
     } catch (const QueueUnderflowException& e) {
         std::cerr << "Caught exception: " << e.what() << std::endl;
     }
     //peek from an empty queue
     try {
-         std::cout << "[TEST] Peek on an empty queue\n";
+         std::cout << "[TEST] Peek on an empty queue,expected:cant do it because no items to peek\n";
          q1.peek();  // q1 is empty, this will throw an exception
     } catch (const QueueUnderflowException& e) {
          std::cerr << "Caught exception: " << e.what() << std::endl;

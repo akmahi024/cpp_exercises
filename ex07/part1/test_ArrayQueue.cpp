@@ -22,7 +22,7 @@ int main() {
     try {
         ArrayQueue queue(-5);  // This will throw an exception
     } catch (const std::invalid_argument& e) {
-        std::cerr << "Caught exception: " << e.what() << std::endl;
+        std::cerr << "[PASSED] Caught exception: " << e.what() << std::endl;
     }
 //default constructor
     ArrayQueue q1;
@@ -49,14 +49,14 @@ int main() {
         std::cout << "[TEST] Dequeue from an empty queue,expected:cant dequeue an empty queue\n";
         q1.dequeue();  // q1 is empty, this should throw an exception
     } catch (const QueueUnderflowException& e) {
-        std::cerr << "Caught exception: " << e.what() << std::endl;
+        std::cerr << "[passed]Caught exception: " << e.what() << std::endl;
     }
     //peek from an empty queue
     try {
          std::cout << "[TEST] Peek on an empty queue,expected:cant do it because no items to peek\n";
          q1.peek();  // q1 is empty, this will throw an exception
     } catch (const QueueUnderflowException& e) {
-         std::cerr << "Caught exception: " << e.what() << std::endl;
+         std::cerr << "[passed]Caught exception: " << e.what() << std::endl;
     }
    
 

@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include "MatNxN.h"
-#include "MatNxN.cpp"
 
 // Define a small epsilon value for floating-point comparison
 const float EPSILON = 1e-5;

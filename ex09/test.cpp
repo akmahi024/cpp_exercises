@@ -1,6 +1,8 @@
+// test_MatNxN.cpp
 
 #include <iostream>
 #include "MatNxN.h"
+#include "MatNxN.cpp"
 
 // Define a small epsilon value for floating-point comparison
 const float EPSILON = 1e-5;
@@ -81,7 +83,7 @@ void constructorTest()
     MatNxN<T, N> matrix(array);
     
     // Verify that the array constructor initializes the matrix with the array values
-    verify(matrix, array, "Array constructor");
+    verify<T, N>(matrix, array, "Array constructor");
 }
 
 // Function to test the arithmetic operations of the MatNxN class
@@ -112,7 +114,7 @@ void arithmeticTest()
         expectedSum[i] = arr1[i] + arr2[i];  // Element-wise addition
     }
     
-    verify(sum, expectedSum, "Binary addition");
+    verify<T, N>(sum, expectedSum, "Binary addition");
 
     // Test binary subtraction
     MatNxN<T, N> diff = matrix2 - matrix1;
@@ -123,7 +125,7 @@ void arithmeticTest()
         expectedDiff[i] = arr2[i] - arr1[i];  // Element-wise subtraction
     }
 
-    verify(diff, expectedDiff, "Binary subtraction");
+    verify<T, N>(diff, expectedDiff, "Binary subtraction");
 
     // Test binary multiplication
     MatNxN<T, N> prod = matrix1 * matrix2;
@@ -142,22 +144,22 @@ void arithmeticTest()
         }
     }
     
-    verify(prod, expectedProd, "Binary multiplication");
+    verify<T, N>(prod, expectedProd, "Binary multiplication");
 
     // Test compound addition
     MatNxN<T, N> temp = matrix1;
     temp += matrix2;
-    verify(temp, expectedSum, "Compound addition");
+    verify<T, N>(temp, expectedSum, "Compound addition");
 
     // Test compound subtraction
     temp = matrix2;
     temp -= matrix1;
-    verify(temp, expectedDiff, "Compound subtraction");
+    verify<T, N>(temp, expectedDiff, "Compound subtraction");
 
     // Test compound multiplication
     temp = matrix1;
     temp *= matrix2;
-    verify(temp, expectedProd, "Compound multiplication");
+    verify<T, N>(temp, expectedProd, "Compound multiplication");
 }
 
 // Function to test the unary minus operator of the MatNxN class
@@ -186,7 +188,7 @@ void unaryMinusTest()
         expectedMinus[i] = -arr[i];  // Negate each element
     }
 
-    verify(neg, expectedMinus, "Unary minus");
+    verify<T, N>(neg, expectedMinus, "Unary minus");
 }
 
 // Function to test the equality operator of the MatNxN class

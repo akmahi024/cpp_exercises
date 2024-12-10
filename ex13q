@@ -1,0 +1,22 @@
+Exercise 13
+Question 1: Median (40 points).
+Deadline: End of the exercise class.
+
+Given an array of float, write a function compute_median() that computes the median. This function takes as argument a vector of float and returns the median as a single precision floating point number.
+
+To compute the median, use the function std::nth_element from <algorithm>. Start by reading the documentation(https://en.cppreference.com/w/cpp/algorithm/nth_element) for this function. Make sure that your implementation deals with vectors of odd and even lengths.
+
+Write code for testing your implementation of the function compute_median(). Include tests for the different edge cases.
+
+In the comments for the function compute_median, give the time complexity of your implementation.
+
+Question 2: k-closest elements to the median (60 points).
+Deadline: November 21.
+
+Given an array of float, define a function compute_k_closest() that computes the k-closest numbers in the input array to the median of the input array. The function takes as arguments a vector of float and an integer k, and returns a vector of the k numbers closest to the median value.
+
+Hint: Given the median (use the code from question 1), you can extract the k-closest numbers by using the function std::nth_element with an appropriate comparison function (consider the distance to the median).
+
+Write code for testing your implementation of the function compute_k_closest().
+
+In the comments for the function compute_median, give the time complexity of your implementation.

@@ -1,0 +1,29 @@
+Exercise 6
+In this exercise you will practice inheritance, dynamic polymorphism, virtual functions and abstract base classes. We will take the typical example of two dimensional shapes.
+
+Question 1: Two dimensional shape interface (30 points).
+Deadline: End of the exercise class.
+
+Define an interface with the name Shape. This interface should export the following (pure virtual) methods:
+
+std::string get_name() const: returns the string corresponding to the name of the primitive (e.g. circle, rectangle, ...),
+float compute_area() const: returns the area of the shape,
+Shape* create() const: creates a new object (using the default constructor),
+Shape* clone() const: returns a copy of the object (using the copy constructor),
+~Shape(): the (virtual) destructor.
+Write the corresponding code in the file "shape.h".
+
+Question 2: Disk (35 points).
+Deadline: End of the exercise class
+
+Define the class Disk that implements the interface Shape. Note that for create() and clone(), the returned types should be a pointer to the given class (this is called covariant return type).
+
+The constructor for the class Disk is:
+
+Disk(Point center, float radius) that specifies the center and radius of the disk.
+Point is a simple data-structure representing a point in two dimensions that you need to define.
+
+Create the files: "disk.h" and "disk.cpp". The header files will contain the class definitions. The code for the methods, as well as the constructors (and destructor), should go in the .cpp files.
+
+To test your code, create a file "test_shape.cpp" and write a function main() containing your tests.
+Question 3: screensht

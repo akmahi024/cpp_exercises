@@ -1,0 +1,13 @@
+Exercise 09
+Question 1: Template matrix class (100 points).
+Deadline: November 7.
+
+Extend the code from the Task 8, such that the square matrix is now a template class with two parameters:
+
+T: the type of the elements in the matrix
+N: the dimension
+Adapt the rest of the code (from the Task 8) accordingly. Write code to test your implementation (e.g., try matrices with different types and dimensions).
+
+Specialize the class for low dimension N=2 (it is a partial specialization since T is still generic). Now, we only need to store 4 coefficients and don't need to store them in an array anymore. Optimize the algebraic operations (+, -, *) for this special case by unrolling the loops.
+
+Note: Do not modify directly your source code for the task 8. Instead, create new files. Name these files appropriately (for example it would seem illogical to name these files Mat2x2 since we deal with N by N matrices now).

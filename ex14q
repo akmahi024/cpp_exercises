@@ -1,0 +1,131 @@
+Exercise 14
+Question: Parallel dot product (100 points).
+Deadline for this question: November 25.
+
+The dot product (or scalar product) between two vectors can be computed as follows:
+
+// assume that *result has been initialized to 0 in the caller.
+void dot_product (const std::vector<float>& v1, const std::vector<float>& v2, float* result) {
+  std::size_t len = v1.size();
+  float sum = 0;
+  for (std::size_t i = 0; i < len; ++i) {
+    sum += v1[i] * v2[i];
+  }
+  *result += sum;
+}
+Suppose that we want to the compute dot product of very large vectors (for example vectors of size 10000000). The computation will take some time. To improve the program speed (wall-clock time), we can start multiple threads and let each thread compute only a part of the dot product. In order to do that, let us add two additional arguments to the function dot_product corresponding to the lower (inclusive) and higher (exclusive) indices that a given thread will be in charge of computing.
+
+void dot_product(const std::vector<float>& v1, const std::vector<float>& v2, 
+  std::size_t lower, std::size_t higher, float* result) {
+  float sum = 0;
+  for (std::size_t i = lower; i < higher; ++i) {
+    sum += v1[i]*v2[i]
+  }
+
+  *result += sum;
+}
+Suppose that you have 100 entries in v1 and v2, and you want to subdivide the work equally in 4, then by calling in order: dot_product(v1,v2,result,0,25), dot_product(v1,v2,result,25,50), dot_product(v1,v2,result,50,75) and finally dot_product(v1,v2,result,75,100), and adding the obtained values, you will get at the end the dot product of v1 and v2. We want each of the call to dot_product to be executed by an individual thread.
+
+Task:
+Complete the functions split(), dot_product() and parallel_dot_product() below such that given a number of threads N, it splits the work to be done for computing the dot product equally between the threads.
+
+Since multiple threads will try to read and write shared data holding the final result, you need to use a mutex to prevent a race condition.
+
+#include <chrono>
+#include <iostream>
+#include <vector>
+#include <stdexcept> 
+
+// Complete: Additional necessary headers ...
+
+
+// Complete: write the function split that computes the lower/higher indices 
+// for which each thread will be responsible. 
+void split(std::size_t nele, std::size_t nthreads, 
+  std::vector<std::size_t>& lower, std::vector<std::size_t>& upper) {
+
+}
+
+
+// Complete: add dot_product and modify it such that there is no race condition. 
+void dot_product(const std::vector<float>& v1, const std::vector<float>& v2, 
+  std::size_t lower, std::size_t higher, float* result) {
+
+}
+
+
+// Complete: the parallel_dot_product function that computes on nthreads the dot product 
+// of v1 and v2 
+float parallel_dot_product(const std::vector<float>& v1, const std::vector<float>& v2, 
+  std::size_t nthreads) {
+
+  if (v1.size() != v2.size()) throw std::runtime_error("Sizes of v1 and v2 don't match");
+
+  std::size_t nele = v1.size(); 
+  float result = 0;
+
+ 
+  // Split 'nele' elements into 'nthreads' part
+  std::vector<std::size_t> lower;
+  std::vector<std::size_t> higher;
+  // lower[i] and higher[i] contains the lower and higher indices
+  // for which a given thread will compute the dot product
+  split(nele, nthreads, lower, higher);  
+
+
+  // Complete: start 'nthreads' threads
+  // don't forget to pass explicitly a reference to the arrays v1 and v2
+  std::vector<std::thread> threads;
+  for (std::size_t i=0; i<nthreads; ++i) {
+    // start a thread that will compute the dot product between v1 and v2 
+    // for indices between lower[i] and higher[i]
+  }
+
+
+  // Complete: join the threads with the main thread
+
+
+  return result;
+}
+
+
+void usage(const char* pname) {
+  std::cout << "Incorrect number of arguments" << std::endl;
+  std::cout << "Usage: " << pname << " nele nthreads" << std::endl;
+  std::cout << "where nele is the number of elements in the random vectors" << std::endl;
+  std::cout << "and nthreads is the number of threads to be used" << std::endl;
+  exit(1); 
+}
+
+
+int main(int argc, char** argv) {
+  if (argc != 3) usage(argv[0]); 
+
+  std::size_t nele = std::stoi(argv[1]); 
+  std::size_t nthreads = std::stoi(argv[2]); 
+
+  // fill the input vectors with random numbers
+  std::vector<float> v1(nele);
+  for (size_t i = 0; i < nele; ++i) {
+    v1[i] = float(rand())/float(RAND_MAX);
+  }
+
+  std::vector<float> v2(nele);
+  for (size_t i = 0; i < nele; ++i) {
+    v2[i] = float(rand())/float(RAND_MAX);
+  }
+
+
+  std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
+  float result = parallel_dot_product(v1, v2, nthreads); 
+  std::chrono::steady_clock::time_point stop = std::chrono::steady_clock::now();
+
+  std::cout << "Result: " << result << " / Elapsed time (ms): " 
+            << std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count() 
+            << std::endl;
+}
+Write code to check the correctness of your implementation (feel free to edit the main function). For example, you can verify that for vectors of small or moderate sizes the multi-threaded version and the normal version produce the same results.
+
+By changing the value of the argument nthreads of the program, you can observe the speedup provided by using multiple threads. Of course, the number of elements in the vector should be sufficiently large.
+
+Write a script (bash, powershell, etc) that runs the program with vectors of different lengths, and different number of threads. The script should save the computational time in a file (for example using the CSV file format). Feel free to modify the output format in the main function above if necessary. Provide a short script written in Matlab or Python (using matplotlib) for plotting the obtained results. Show these results with a brief description in a markdown file to be committed in the repository.

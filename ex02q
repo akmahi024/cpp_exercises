@@ -1,0 +1,79 @@
+
+Exercise 2
+Question 1: A queue of 3d points (100 points)
+Deadline: October 9.
+
+A queue is a data-structure where data is added in the back and removed from the front. Queues are also called FIFO for First In First Out. The goal of this question is to implement a queue data-structure for storing three dimensional points (user defined class Point). To simplify, we assume that the queue is implemented by an array, and that the array has a fixed size (the code for allocating memory for the array is provided).
+
+Create three files: queue.h, queue.cpp, test_queue.cpp
+
+Step 1: Implement the Point data-structure and use the following definition of the Queue data-structure in the file queue.h
+
+#ifndef QUEUE_H
+#define QUEUE_H
+
+// Insert the relevant headers here 
+
+// Define a struct for representing three dimensional points with integral coordinates 
+struct Point {
+// Complete 
+};
+
+
+// Class for representing a queue 
+class Queue {
+public:
+ // Constructor: It allocates memory for an array of size max_size
+ Queue(int max_size=100) : _num_items(0), _max_size(max_size), 
+   _first(0), _last(0), _items(new Point[max_size]) {}
+
+ ~Queue() { delete[] _items; }
+
+ // Interface
+ 
+ // Check whether the queue is empty 
+ // (the implementation will go in queue.cpp)
+ bool empty();
+
+ // Check whether the queue is full
+ // (the implementation will go in queue.cpp)
+ bool full();
+
+ // Return the number of elements in the queue 
+ // (the implementation will go in queue.cpp)
+ int size();
+
+ // Insert an element in the queue 
+ // print an error message on std::cerr and exit in case of overflow
+ // (the implementation will go in queue.cpp)
+ void enqueue(Point);
+
+ // Remove an element from the queue 
+ // print an error message on std::cerr and exit in case of underflow
+ // (the implementation will go in queue.cpp)
+ void dequeue();
+
+ // Acces the least recently added element
+ // (the implementation will go in queue.cpp)
+ Point peek();
+
+private:
+  int _num_items; // number of elements in the queue
+  int _max_size; // capacity of the fixed-size queue
+  int _first; // index to the first element of the queue
+  int _last; // index of the next available slot 
+  Point* _items; // data container 
+
+};
+#endif 
+Step 2: Implement the methods of the class Queue in the file queue.cpp
+
+Step 3: Write a main() function to test your implementation
+
+// test_queue.cpp
+// Insert the relevant headers here 
+
+int main(void) {
+  // COMPLETE
+  // Write tests for testing your queue implementation. 
+}

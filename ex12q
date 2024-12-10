@@ -1,0 +1,31 @@
+Exercise 12
+Question 1: K-closest points (50 points).
+Deadline: November 18.
+
+A Point is represented by a triple of numbers x, y and z corresponding to the point coordinates.
+
+  struct Point {
+   Point() : x(0.f), y(0.f), z(0.f) {}
+   Point(float x, float y, float z) : x(x), y(y), z(z) {}
+   float x, y, z;
+  };
+Define a function object Compare, with an overridden call function operator that takes two Point objects as argument and returns a bool. This boolean value is true if the distance from the first point to the origin of the coordinate system is less than the distance from the second point to the origin of the coordinate system. It returns false otherwise. The distance from a point with coordinates 
+ to the origin is given by sqrt(x^2+y^2+z^2).
+
+Given the function object Compare, and using std::priority_queue from the standard library (see the documentation for the priority queue), write a function find_k_closest that takes a positive integer k and a list of Points, and returns a list of the k closest points to the origin.
+
+Write code to test your implementation of the function find_k_closest().
+
+Question 2: Point search (50 points).
+Deadline: November 18.
+
+Instead of searching in a collection of points the k-nearest points to a given input point, we want now to find if a given input point is present in a given collection of points.
+
+Write a function find() that takes as input an hash-set of points (i.e. a std::unordered_set of Point) and a query point, and returns true if the point is in the collection, false otherwise.
+
+To initialize the hash-set of points, write a function read_from_csv() that takes as input a CSV file containing a list of 3D points, and returns a hash-set (std::unordered_set) with the points.
+
+Write code to test your implementation of these different functions.
+
+
+Note: To simplify, you can assume a subset of the CSV format. A typical input CSV file will be a collection of lines, where each line is a list of three floating point numbers separated by commas. Each line is terminated by an end-of-line character. Please do error checking in your CSV reader function.

@@ -1,0 +1,26 @@
+Exercise 10
+Question 1: Evaluating fully parenthesized arithmetic expressions (80 points).
+Deadline: November 11.
+
+The goal of this question is to write a function float evaluate(const std::string&) that evaluates a fully parenthesized arithmetic expression. An arithmetic expression is an expression involving real numbers, and operations (+, -, *, /). An expression is fully parenthesized when all parentheses are present to indicate the order in which the terms are evaluated. For example, ( 1 + ( 2 + 3 ) ) is a fully parenthesized expression, while ( 1 + 2 + 3 ) isn't.
+
+To evaluate fully parenthesized expressions, you will implement Dijkstra's 2-stack algorithm, which works as follows
+
+If the token is an operand, push it on the operands stack,
+If the token is an operation, push it on the operations stack,
+If the token is a left parenthesis, ignore it,
+If the token is a right parenthesis, pop an operation from the operations stack, pop the requested number of operands from the operands stack, evaluate the operation with the operands and push the result on the operands stack.
+The name of the algorithm (2-stack) comes from the use of two stacks (the operands stack and the operations stack).
+
+To simplify, assume that an expression is represented by a string, where operators, operands and parentheses must be separated by whitespace. Assume that the expression is fully parenthesized. Finally assume that operands are single precision floating point numbers.
+Use the std::stack from the standard library.
+To extract the tokens (operands, operations) from the input string consider using a std::stringstream, and the function getline() (see the slides from the lecture 2).
+
+Use exceptions to deal with potential errors (for example ill-formed expressions).
+
+Write code to test and validate your implementation of evaluate().
+
+Question 2: Evaluating fully parenthesized generic arithmetic expressions (20 points).
+Deadline: November 11.
+
+Extend your implementation from the previous question such that it can deal with expressions of any algebraic type. Use templates for this purpose.

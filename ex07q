@@ -1,0 +1,12 @@
+Exercise 7
+Question 1: Exceptions (70 points).
+Deadline: End of the exercise class.
+
+Modify the code of Task 5 such that exceptions are raised when necessary. Define your own exception types according to the problem domain by subclassing the base classes from the standard library (for example std::exception). Indicate functions that do not throw anything, with the keyword noexcept. Write code to test your modifications.
+
+Note: Create a separate sub-directory rather than directly modifying your code for the task 5.
+
+Question 2: Exceptions (30 points).
+Deadline: October 31.
+
+In some codebases, developers choose not to use exceptions because of their performance overhead and code bloat. Try to justify these claims. For example, you could consider looking at the assembly code generated when exceptions are used, or you could try to explain in which situation (why) performance overhead occurs. Write your jsutifications in a markdown file to be pushed in the repository with the rest of your code.

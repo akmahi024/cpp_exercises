@@ -1,0 +1,25 @@
+'''cpp
+Exercise 1
+Question 1: Primality testing (50 points)
+Deadline: End of the exercise class.
+
+A number is prime if it is a natural number divisible only by itself and 1 (Remark: 1 is not considered to be prime). Write a function isPrime() taking as input an unsigned integer x and returning true if the input is prime, and false otherwise. (Remark: The type bool exists in C++ with values true and false).
+
+In the main() function, write several tests for your implementation of isPrime(). You can use the C functions printf() for IO, and/or the macro assert.
+
+Question 2: A more efficient implementation (50 points)
+Deadline: October 7.
+
+We are going to assume now that we are only interested in computing the prime numbers less than 1024. In that case, we can precompute the odd primes and pack them in 64-bit words:
+
+P0 = 0111011011010011001011010010011001011001010010001011011010000001, 
+P1 = 0100110000110010010100100110000110110000010000010110100110000100, 
+P2 = 1001001100101100001000000101101000000100100001101001000100100101, 
+P3 = 0010001010001000011000011001010010001011010000010001010001010010, 
+P4 = 0000110000000010010000100100110010000100100110010010110000010000, 
+P5 = 1101001001100000101001000100001000100001000100100101000100101000, 
+P6 = 1010000001000010000011000011011000010000001011010000001011010000, 
+P7 = 0000010100010000100010100100100000010100100100010010000010100110.
+Now, to test whether the number 2*k+1 is prime, read the k-th bit from the table above (starting from P0). We assume that the bits are packed from left to right in each word, so for example, the first bits 01110 of P0 tell us that: 1 is not prime, 3 is prime, 5 is prime, 7 is prime and 9 is not prime.
+
+Test your implementation using the tests from the first question.

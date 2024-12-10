@@ -1,0 +1,44 @@
+Exercise 3
+Question 1: Pointers (100 points)
+Deadline: End of the exercise class. Deadline: October 9.
+
+Create a file: "test_pointers_references.cpp" then complete the following code according to the explanations in comments:
+
+// test_pointers.cpp
+// COMPLETE include necessary headers
+int main(void)
+{
+  //
+  // 1. Declare a variable f as a pointer to a float
+  // 2. Create a float variable named e, and store the value 2.71828f
+  // 3. Make f points to e
+  // 4. Print out the content of the memory location pointed to by f
+
+  //
+  unsigned a[] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+  // 5. Declare a variable up as a pointer to an unsigned integer
+  // 6. Make up points to the beginning of the array a
+  // 7. Print out what up points to and the content of a[0] (verify they are the same)
+  // 8. Increase up by 3 and check that what it points to corresponds to a[3]
+  // 9. Make up points to the last element of the array
+
+  // 
+  int n = 20;
+  // 10. Declare a variable fa as a pointer to float and 
+  // make it point to an array of "n" elements of type "float" created on the heap
+  // 11. Store the values i / 11.0f for i ranging through the different elements in the array 
+  // 12. Print out each element of fa
+  // 13. Delete the previously allocated memory and set it to nullptr
+
+  //
+  int m = 5;
+  n = 5;
+  double** dd;
+  // 14. Allocate memory for a 2d array of size m * n on the heap (i.e. m arrays of size n).  
+  // Make dd points to this 2d array.
+  // 15. Set the element dd[i][j] to be equal to i/(j+1.0) for i and j ranging through the array elements
+  // 16. Print each element of the double array dd 
+  // 17. Delete the memory allocated for the 2d array and set it to nullptr
+
+  return 0;
+}

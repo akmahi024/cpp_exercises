@@ -1,0 +1,135 @@
+Exercise 5
+In the following questions, you will exercise your understanding of how constructor, copy constructor, move constructor, assignment operator and destructor work.
+
+Question 1: Constructor and destructor (40 points)
+Deadline: End of the exercise class. Create a file named "ArrayQueue.h" that will contain the definition of the class ArrayQueue. ArrayQueue is an implementation for a FIFO (First-in-first-out) queue using a resizing array to hold elements of type std::string. Type and complete the following code:
+
+// ArrayQueue.h
+
+#include <string>
+#include <iostream>
+
+#ifndef ARRAY_QUEUE_H
+#define ARRAY_QUEUE_H
+
+class ArrayQueue {
+private:
+    int _num_items; // number of items in the queue
+    int _allocated_size; // size of memory allocated
+    int _first; // index to the first element of the queue 
+    int _last; // index of the next available slot 
+    std::string* _items; // container 
+    
+
+    void resize(int max_size) {
+        if (max_size == 0) max_size++;
+
+        // Move data to a new array of size max_size
+        std::string* temp = new std::string[max_size];
+        // Copy 
+        for (int i = 0; i < _num_items; ++i) {
+            temp[i] = _items[(i+_first)%_allocated_size];
+        }
+        delete[] _items;
+        _items = temp;
+
+        _first = 0; 
+        _last = _num_items;
+        _allocated_size = max_size;
+    }
+
+public:
+    // Constructors:
+    // Default constructor 
+    ArrayQueue() 
+    /* COMPLETE ... Create an empty queue
+     */
+
+    explicit ArrayQueue(int allocated_size) 
+    /* COMPLETE ... Create an empty queue with memory allocated 
+     * to store 'allocated_size' items 
+     */
+
+    // Destructor:
+    ~ArrayQueue() {
+        // COMPLETE
+    }
+
+    // Add an item to the queue 
+    void enqueue(const std::string& item) {
+        if (_num_items == _allocated_size) resize(2*_allocated_size);
+        _items[_last++] = item; 
+        if (_last == _allocated_size) _last = 0; // wrap 
+        _num_items++; 
+    }
+
+    // Remove the item that was least recently added 
+    void dequeue() {
+        _num_items--;
+        _first++; 
+        if (_first == _allocated_size) _first = 0; // wrap 
+        if (_num_items > 0 && _num_items == _allocated_size/4) resize(_allocated_size/2);
+    }
+
+    // Access the top-most item 
+    std::string peek() {
+        return _items[_first];
+    }
+
+    // Check if the queue is empty 
+    bool empty() const { return _num_items == 0; }
+
+    // Return the number of elements in the queue 
+    int size() const { return _num_items; }
+};
+
+#endif // ARRAY_QUEUE_H
+Write code to test this class: "test_ArrayQueue.cpp":
+
+// test_ArrayQueue.cpp
+#include "ArrayQueue.h"
+
+int main(void) {
+// Complete: Write code to test your implementation of the Queue class. 
+
+return 0;
+}
+Question 2: Copy constructor and assignment operator (30 points)
+Deadline: October 24
+
+Complete the definition of the class ArrayQueue by adding a copy constructor. The copy constructor should carefully manage the owned data (i.e. the pointers). You can add the copy constructor directly in the file "ArrayQueue.h".
+
+Next, edit the file "ArrayQueue.h" and add the implementation of the assignment operator. Please be careful to properly manage the owned resources and to handle self-assignment correctly.
+
+In order to test your class, edit the file "test_ArrayQueue.cpp" and insert code to test the added functionalities:
+
+int main(void) {
+    // ...
+    // Testing code from question 1
+    // ...
+
+    // Complete: Test the copy
+
+    // Complete: Test assignment
+
+    return 0;
+}
+Question 3: Move constructor and move assignment operator (30 points)
+Deadline: October 24
+
+Complete the definition of the class ArrayQueue by adding a move constructor (add the code directly in the file "ArrayQueue.h").
+
+Next, provide an implementation of the move assignment operator (again you can add the code directly in the file "ArrayQueue.h").
+
+In order to test your class, edit the file "test_ArrayQueue.cpp" and insert code to test the added functionalities:
+
+int main(void) {
+    // ...
+    // Testing code from questions 1 and 2
+    // ...
+
+    // Complete: Test the move operators 
+    // and your implementation of the move semantic. 
+
+    return 0;
+}

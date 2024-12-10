@@ -1,0 +1,14 @@
+Exercise 11
+Question: Forward iterators and sorting (100 points).
+Deadline: November 14.
+
+Define a function sort() (in the namespace PL04) that takes a pair of forward iterators as arguments, defining a range [begin; end), and sort them in ascending order. Assume that < is used for the comparisons. Implement the bubble sort algorithm.
+
+namespace PL04 {  
+ template <class FwdIt>
+ void
+ sort(FwdIt begin, FwdIt end);
+}
+Write code to test your implementation (be careful that sort() is defined in the namespace PL04).
+
+Note: You can not use any function from the standard library. If you need some util functions (for example std::next()), you will have to rewrite them yourself.

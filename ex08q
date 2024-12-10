@@ -1,0 +1,18 @@
+Exercise 08
+Question 1: Operator overloading (100 points)
+Deadline: November 5.
+
+In this exercise, your goal is to define a class Mat2x2 that represents 2 x 2 matrices of real numbers (use float to store the coefficients). The default constructor of this class creates the identity matrix. Another constructor of this class takes as argument an array containing the matrix coefficients in column-order (the first two elements define the first column of the matrix, the next two elements define the second column of the matrix).
+
+Define the following operations for Mat2x2:
+
++, -: addition and subtraction of two matrices. Example: C = A + B, where A, B and C are Mat2x2 objects.
+*: matrix multiplication. Example: C = A * B, where A, B, C are Mat2x2 objects.
++=, -=, *=: compound addition / subtraction / multiplication and assignment operator: B += A is equivalent to B = B + A, where A and B are Mat2x2 objects.
+-: unary minus. Example: B = -A, where A and B are Mat2x2 objects; B's coefficients correspond to -A's coefficients.
+(i,j): used to access the i,j (ith row, jth column) element of the matrix. Example: float aij = A(i, j);, where A is a Mat2x2 object. There is no need to check for bound constraints.
+==: to test if two Mat2x2 matrices are equal. Two matrices are equal if their coefficients are equal (Do not compare floating point numbers exactly, but instead check that the absolute value of their difference is below some threshold).
+<<: the stream insertion operator, that allows to insert Mat2x2 objects in C++ streams
+Use "Mat2x2.h" and "Mat2x2.cpp" for the filenames. You can use any internal representation that you want for storing the matrix coefficients within the class Mat2x2.
+
+Write code to test your implementation. The tests should go in the file called "test_Mat2x2.cpp".

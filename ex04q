@@ -1,0 +1,10 @@
+Exercise 4
+Question 1: Const-correctness (70 points)
+Deadline: End of the class.
+
+Modify the code from the Task 2 such that the class Queue is const-correct. I.e., arguments to member functions that are not modified by a method should be marked as const. Similarly, member functions that do not modify the object they act on should be marked as const member functions.
+
+Question 2: Constexpr (30 points)
+Deadline: End of the class.
+
+Write a function cube() that takes as input an integer and returns its cube (cube(2) returns 8, cube(3) returns 27, etc). Use constexpr to guarantee compile-time evaluation of the function (as long as its arguments are evaluated at compile-time). Write a simple test function to demonstrate its use. Use godbolt to verify that the function is evaluated at compile-time (Copy/paste the generated assembly code in a markdown file to be pushed to your repository. Write one or two lines of explanations in the markdown file.).
